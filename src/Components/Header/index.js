@@ -29,7 +29,6 @@ const Header = props => {
           </Link>
           <ul className="nav-bar-mobile-icons-container">
             <li>
-              {' '}
               <Link to="/">
                 <AiFillHome className="nav-item-mobile-link" />
               </Link>
@@ -45,7 +44,7 @@ const Header = props => {
                 className="nav-mobile-btn"
                 onClick={onClickLogout}
               >
-                <FiLogOut />
+                <FiLogOut />b
               </button>
             </li>
           </ul>

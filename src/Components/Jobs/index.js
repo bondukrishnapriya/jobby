@@ -87,14 +87,13 @@ class Jobs extends Component {
       }))
       this.setState({
         jobsList: updatedJobsData,
-        apistatus: apiStatusConstants.success,
+        apiStatus: apiStatusConstants.success,
       })
     } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
     }
-  
   }
 
   renderJobsList = () => {
@@ -115,7 +114,7 @@ class Jobs extends Component {
           className="no-jobs-img"
           alt="no jobs"
         />
-        <h1 className="n--jobs-heading">No Jobs Found</h1>
+        <h1 className="no-jobs-heading">No Jobs Found</h1>
         <p className="no-jobs-description">
           We could not find any jobs. Try other filters
         </p>
@@ -125,7 +124,11 @@ class Jobs extends Component {
 
   renderFailureView = () => (
     <div className="failure-view">
-      <img src="" alt="failure view" className="jobs=failure-img" />
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failure view"
+        className="jobs-failure-img"
+      />
       <h1 className="no-jobs-heading">Oops! Something Went Wrong</h1>
       <p className="failure=description">
         We cannot seem to find the page you are looking for
@@ -134,6 +137,7 @@ class Jobs extends Component {
         className="jobs-button"
         onClick={this.getJobs}
         data-testid="button"
+        type="button"
       >
         Retry
       </button>
@@ -218,7 +222,7 @@ class Jobs extends Component {
                   className="search-button-container-desktop"
                   onClick={this.getJobs}
                 >
-                  <BsSearch className="search-icon-desktop" />
+                  <BsSearch className="search-icon-desktop" />b
                 </button>
               </div>
               {this.renderAllJobs()}

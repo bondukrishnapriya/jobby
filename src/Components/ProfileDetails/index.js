@@ -74,7 +74,7 @@ class ProfileDetails extends Component {
   )
 
   render() {
-    const apiStatus = this.state
+    const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.success:

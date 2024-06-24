@@ -33,7 +33,7 @@ class JobItemDetails extends Component {
 
   getFormattedSimilarData = data => ({
     companyLogoUrl: data.company_logo_url,
-    employmentType: data.employmen_type,
+    employmentType: data.employment_type,
     id: data.id,
     jobDescription: data.job_description,
     location: data.location,
@@ -44,26 +44,26 @@ class JobItemDetails extends Component {
   getFormattedData = data => ({
     companyLogoUrl: data.company_logo_url,
     comapanyWebsiteUrl: data.company_website_url,
-    employmentType: data.employmet_type,
+    employmentType: data.employment_type,
     id: data.id,
     jobDescription: data.job_description,
     lifeAtCompany: {
       description: data.life_at_company.description,
-      imageUrl: data.image_url,
+      imageUrl: data.life_at_company.image_url,
     },
     location: data.location,
     rating: data.rating,
     title: data.title,
-    packagesPerAnnum: data.package_per_annum,
+    packagePerAnnum: data.package_per_annum,
     skills: data.skills.map(eachSkill => ({
       imageUrl: eachSkill.image_url,
       name: eachSkill.name,
     })),
   })
 
-  getJobData = async props => {
+  getJobData = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {match} = props
+    const {match} = this.props
     const {params} = match
     const {id} = params
 
@@ -95,7 +95,11 @@ class JobItemDetails extends Component {
 
   renderFailureView = () => (
     <div className="job-item-error-view-container">
-      <img src="" alt="failure view" className="job-item-failure-img" />
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failure view"
+        className="job-item-failure-img"
+      />
       <h1 className="job-item-failure-heading-text">
         Oops Something Went wrong
       </h1>
@@ -120,7 +124,7 @@ class JobItemDetails extends Component {
   )
 
   renderJobDetailsView = () => {
-    const {jobData, similarJobsData} = this.state
+    const {jobData, similarJobData} = this.state
     const {
       companyLogoUrl,
       companyWebsiteUrl,
@@ -193,7 +197,7 @@ class JobItemDetails extends Component {
         </div>
         <h1 className="similar-jobs-data">Similar Jobs</h1>
         <ul className="simlar-jobs-list">
-          {similarJobsData.map(eachSimilarJob => (
+          {similarJobData.map(eachSimilarJob => (
             <SimilarJobItem
               jobDetails={eachSimilarJob}
               key={eachSimilarJob.id}

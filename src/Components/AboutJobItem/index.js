@@ -10,7 +10,7 @@ import {MdLocationOn} from 'react-icons/md'
 
 import Header from '../Header'
 
-import SimilarJobs from '../SimilarJobs'
+import SimilarJobItem from '../SimilarJobItem'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -27,7 +27,7 @@ class AboutJobItem extends Component {
   componentDidMount() {
     this.getJobsData()
   }
-  getJobsData = async props => {
+  getJobsData = async () => {
     const {match} = this.props
     const {params} = match
     const {id} = params
@@ -37,7 +37,7 @@ class AboutJobItem extends Component {
     const url = `https://apis.ccbp.in/jobs/${id}`
     const options = {
       headers: {
-        Authorization: `Bearer ${jwtToken}`
+        Authorization: `Bearer ${jwtToken}`,
       },
       method: 'GET',
     }
@@ -75,7 +75,7 @@ class AboutJobItem extends Component {
       }))
       this.setState({
         jobDataDetails: updatedData,
-        similarJobData: updatedSimilarJobDetails,
+        similarJobsData: updatedSimilarJobDetails,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -155,8 +155,8 @@ class AboutJobItem extends Component {
           </div>
           <ul className="simlar-jobs-list">
             {similarJobsData.map(eachSimilarJob => (
-              <SimilarJobs
-                similarJobData={eachSimilarJob}
+              <SimilarJobItem
+                jobDetails={eachSimilarJob}
                 key={eachSimilarJob.id}
                 employmentType={employmentType}
               />
@@ -212,7 +212,7 @@ class AboutJobItem extends Component {
       <div className="job-details-view-container">
         <Header />
         {this.renderJobDetails()}
-      </div>
+      </div>,
     )
   }
 }
